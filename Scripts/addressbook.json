@@ -1,0 +1,25 @@
+{
+    "contacts":[
+        {
+        "name":"Tom Tsiliopoulos",
+        "email":"tom@example.com"
+        },
+        {
+        "name":"Jessica Jones",
+        "email":"jessica@example.com"
+        },
+        {
+        "name":"Bruce Wayne",
+        "email":"bruce@example.com"
+        },
+        {
+        "name":"Clark Kent",
+        "email":"clark@example.com"
+        },
+        {
+        "name":"Peter Parker",
+        "email":"peter@example.com"
+        }
+
+    ]
+}

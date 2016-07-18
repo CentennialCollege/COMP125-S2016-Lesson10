@@ -13,57 +13,32 @@
 (function () {
     "use strict";
 
+    var xhr;
+
+    // we can use a named function instead of an anonymous function
+    function readData() {
+           // data loaded                everything is ok
+        if((xhr.readyState === 4) && (xhr.status === 200)) {
+
+            var addressbook = JSON.parse(xhr.responseText);
+            var contacts = addressbook.contacts;
+
+            contacts.forEach(function(contact) {
+                console.log(contact);
+            }, this);
+            
+           }
+    }
 
     // app entry function
     function init() {
-        console.log("App Started");
+       xhr = new XMLHttpRequest(); // step 1 - create xhr object
+   
+       xhr.open("GET","Scripts/addressbook.json",true); // step 2 - open request
 
-        var mystring = "MyStrIng";
-        console.log("Original String: " + mystring);
-        var newstring = mystring.toLowerCase();
-        console.log("New String: " + newstring);
+       xhr.send(null); // step 3 - send request
 
-        var firstNameLastName = "John Smith";
-        var spacePosition = firstNameLastName.indexOf(" ");
-        console.log(spacePosition);
-
-        var firstName = firstNameLastName.slice(0, spacePosition + 2);
-        console.log(firstName);
-
-        var emailPattern = /^[_a-zA-Z0-9\\-]+(\.[_a-zA-Z0-9\\-]+)*@[a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})$/;
-
-        var myArray = new Array();
-        var myOtherArray = [];
-        myOtherArray[0] = "firstString";
-
-        function Card(face, suit) {
-            this.face = face;
-            this.suit = suit;
-        }
-
-        var deck = [
-            new Card("Ace","Spades"), 
-            new Card("King","Diamonds"), 
-            new Card("Jack","Clubs"),
-            new Card("Queen", "Hearts"),
-            new Card("10", "Spades")
-            ];
-
-        /*
-        for (var index = 0; index < deck.length; index++) {
-            console.log(deck[index].face + " " + deck[index].suit);
-        }
-        */
-
-        /*
-        deck.forEach(function(card) {
-            console.log(card.face + " " + card.suit);
-        }, this);
-        */
-
-        for (var card in deck) {
-            console.log(deck[card].face + " " + deck[card].suit);
-        }
+       xhr.addEventListener("readystatechange", readData); // step 4
 
     }
 
